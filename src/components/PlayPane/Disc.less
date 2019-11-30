@@ -1,0 +1,25 @@
+@width: 250px;
+@offset: 100px;
+
+.disc {
+  height: @width;
+  width: @width;
+  margin: 5px auto;
+  background-size: contain;
+  border-radius: 50%;
+
+  .discLight {
+    height: @width;
+    width: @width;
+    background-size: contain;
+    border-radius: 50%;
+
+    .album {
+      height: @width - @offset;
+      width: @width - @offset;
+      border-radius: 50%;
+      transform: translate(@offset / 2, @offset / 2);
+      background-size: contain;
+    }
+  }
+}

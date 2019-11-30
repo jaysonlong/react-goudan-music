@@ -1,0 +1,44 @@
+.container {
+  position: fixed;
+  left: 0;
+  bottom: 0;
+  height: 60px;
+  width: 100%;
+  padding: 0 20px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: white;
+  border-top: .5px solid #d6d6d6;
+
+  .album {
+    border-radius: 50%;
+    width: 40px;
+    height: 40px;
+  }
+
+  .info {
+    flex-grow: 1;
+    margin: 0 20px;
+
+    .song {
+      font-size: 14px;
+      margin-bottom: 5px;
+    }
+  
+    .singer {
+      font-size: 13px;
+    }
+  }
+
+  @size: 20px;
+
+  .play {
+    font-size: @size + 8px;
+    margin-right: 15px;
+  }
+
+  .list {
+    font-size: @size;
+  }
+}

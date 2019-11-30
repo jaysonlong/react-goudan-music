@@ -1,0 +1,34 @@
+@width: 22px;
+
+.header {
+  height: 40px;
+  position: relative;
+  text-align: center;
+
+  .down {
+    position: absolute;
+    top: 0;
+    left: 10px;
+    color: white;
+    width: @width + 8px;
+    height: @width + 8px;
+  }
+
+  .center {
+    margin: 5px;
+    .logo {
+      position: relative;
+      top: 5px;
+      margin-right: 10px;
+      img {
+        width: @width;
+        height: @width;
+      }
+    }
+  
+    .title {
+      color: white;
+      font-size: 19px;
+    }
+  }
+}

@@ -1,0 +1,26 @@
+.basic {
+  background-size: contain;
+  background-repeat: no-repeat;
+}
+
+@swidth: 40px;
+
+.container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-top: 15px;
+
+  .prev, .next {
+    .basic();
+    width: @swidth;
+    height: @swidth;
+    margin: 0 25px;
+  }
+
+  .play {
+    .basic();
+    width: @swidth + 15px;
+    height: @swidth + 15px;
+  }
+}

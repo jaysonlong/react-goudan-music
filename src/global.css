@@ -1,0 +1,41 @@
+* {
+  box-sizing: border-box;
+}
+
+html {
+  height: 100%;
+}
+
+body {
+  height: 100%;
+  margin: 0;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen",
+    "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue",
+    sans-serif;
+}
+
+#root {
+  position: fixed;
+  height: 100%;
+  width: 100%;
+  overflow-y: auto;
+}
+
+.am-search .am-search-cancel {
+  color: #222;
+}
+
+.panel-enter {
+  transform: translateY(calc(100vh));
+}
+.panel-enter-active {
+  transform: translateY(0);
+  transition: transform 500ms;
+}
+.panel-exit {
+  transform: translateY(0);
+}
+.panel-exit-active {
+  transform: translateY(calc(100vh));
+  transition: transform 500ms;
+}

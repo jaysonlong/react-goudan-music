@@ -1,0 +1,40 @@
+
+@width: 15px;
+
+.title {    
+  height: 50px;
+  margin-left: 10px;
+  padding-right: 10px;
+  font-size: 15px;
+  line-height: 50px;
+  color: #507daf;
+}
+
+.item {
+  height: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  border-bottom: .5px solid #ddd;
+
+  &:active {
+    background-color: #e5e5e5;
+  }
+
+  .history {
+    margin: 0 13px;
+    img {
+      width: @width;
+      height: @width;
+    }
+  }
+
+  .content {
+    flex-grow: 1;
+    font-size: 13px;
+    color: #222;
+    position: relative;
+    top: -2px;
+  }
+}
+
