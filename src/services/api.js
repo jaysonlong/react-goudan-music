@@ -4,7 +4,7 @@ export const baseUrl = "http://127.0.0.1:4000";
 export const storageKey = "search-history";
 
 // 设置控制台是否输出服务器响应内容
-const logData = true;
+const logData = process.env.NODE_ENV === 'development' ? true : false;
 
 // 获取音乐url
 export async function querySongUrl(songIds) {
