@@ -14,7 +14,6 @@
 **项目概况**：
 
 - 基础技术栈： `react` + `antd-mobile` + `react-router` + `redux` + `redux-saga`
-
 - 基于 `create-react-app` 创建，使用 `dva` 管理
 - 半成品，能用，但目前只有基本的搜索/播放/歌单/排行榜功能
 - 自己摸索着一点点写的， 没有参考任何教程，代码/结构可能不太规范

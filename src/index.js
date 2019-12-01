@@ -1,12 +1,12 @@
 import dva from 'dva';
-// import FastClick from 'fastclick';
+import FastClick from 'fastclick';
 import './global.css';
 import './assets/iconfont/iconfont.css';
 import MyRouter from './router';
 import { getStorage } from './utils/utils';
 import { storageKey } from './services/api';
 
-// FastClick.attach(window.document.body);
+FastClick.attach(window.document.body);
 
 const app = dva({
   initialState: {

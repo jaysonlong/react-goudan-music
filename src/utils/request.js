@@ -66,10 +66,12 @@ const cachedGet = (expirys, hashcode) => {
   return null;
 }
 
+// 开发坏境延长缓存时间10分钟，方便测试
+const defaultExpirys = process.env.NODE_ENV === 'development' ? 60 * 5 : 60;
 
 /**
  * 请求工具类，设置缓存，失败时显示报错信息
- * options.expirys设置过期信息，如 70 或 true (60)，以秒计
+ * options.expirys设置过期信息，如 70 或 true (取默认值)，以秒计
  * @param {url} url 
  * @param {options} options
  */
@@ -85,7 +87,7 @@ export default function request(url, options) {
     .update(fingerprint)
     .digest('hex');
 
-  const expirys = options.expirys && 60;
+  const expirys = options.expirys && defaultExpirys;
   if (expirys !== false) {
     const jsonResp = cachedGet(expirys, hashcode)
     if (jsonResp !== null) {

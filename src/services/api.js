@@ -3,10 +3,7 @@ import request from '../utils/request';
 export const baseUrl = "http://127.0.0.1:4000";
 export const storageKey = "search-history";
 
-const testPlayList = false;
-const testRecommend = false;
-const testPopular = false;
-const testSearch = false;
+// 设置控制台是否输出服务器响应内容
 const logData = true;
 
 // 获取音乐url
@@ -27,8 +24,6 @@ export async function queryAlbumInfo(albumId) {
 
 // 获取推荐歌单
 export async function queryRecommendPlayLists(limit = 30) {
-  if (testRecommend)
-    return Promise.resolve(require('../data/queryRecommendPlayLists.json'));
   return request(`${baseUrl}/personalized?limit=${limit}`)
     .then(({ code, result }) => {
       return result.map(each => {
@@ -49,8 +44,6 @@ export async function queryRecommendPlayLists(limit = 30) {
 
 // 获取推荐的新音乐
 export async function queryRecommendNewSongs() {
-  if (testRecommend)
-    return Promise.resolve(require('../data/queryRecommendNewSongs.json'));
   return request(`${baseUrl}/personalized/newsong`)
     .then(({ code, result }) => {
       return result.map(each => {
@@ -70,8 +63,6 @@ export async function queryRecommendNewSongs() {
 
 // 获取热歌榜
 export async function queryPopularSongs() {
-  if (testPopular)
-    return Promise.resolve(require('../data/queryPopularSongs.json'));
   return request(`${baseUrl}/top/list?idx=1`)
     .then(({ code, playlist }) => {
       const {
@@ -104,8 +95,6 @@ export async function queryPopularSongs() {
 
 // 获取热搜
 export async function queryHotSearch() {
-  if (testSearch)
-    return Promise.resolve(require('../data/queryHotSearch.json'));
   return request(`${baseUrl}/search/hot`)
     .then(({ result }) => result.hots.map(each => each.first))
     .catch(err => [])
@@ -132,8 +121,6 @@ export async function querySearchResult(keyword, limit = 30, offset = 0) {
 
 // 获取歌单内容
 export async function queryPlayList(listId) {
-  if (testPlayList)
-    return Promise.resolve(require('../data/queryPlayList.json'));
   return request(`${baseUrl}/playlist/detail?id=${listId}`)
     .then(({ playlist }) => {
       let {

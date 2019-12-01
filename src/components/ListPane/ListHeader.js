@@ -3,7 +3,7 @@ import BgHolder from '../BgHolder';
 import styles from './ListHeader.less'
 import { Icon } from 'antd-mobile';
 
-const headerHeight = 250;
+const headerHeight = 300;
 const topBarHeight = 40;
 
 const ListHeader = ({ name, playCount, creator, coverImgUrl, onClick }) => {

@@ -1,4 +1,5 @@
-@height: 270px;
+@offset: 20px; // 歌单列表向上偏移量
+@height: 300px;
 
 .header {
   
@@ -28,7 +29,7 @@
   }
 
   .bg {
-    height: @height;
+    height: @height + @offset;
     background-size: cover;
     background-position: center;
 
@@ -36,8 +37,8 @@
       display: flex;
       flex-direction: column;
       justify-content: flex-end;
-      padding: 0 20px 30px;
-      height: @height;
+      padding: 0 20px (@offset + 10px);
+      height: @height + @offset;
       background-color: rgba(0,0,0,.2);
       font-size: 12px;
       color: white;

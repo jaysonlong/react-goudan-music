@@ -1,12 +1,13 @@
 const path = require('path');
-
-// console.log(path.resolve(__dirname, 'src', 'app.js'))
-// process.exit()
-
-const { override, fixBabelImports, addWebpackModuleRule } = require('customize-cra');
+const { override, fixBabelImports, addWebpackModuleRule, babelExclude } = require('customize-cra');
 
 module.exports = {
   webpack: override(
+    (config) => {
+      config.output.publicPath = "./";
+      return config;
+    },
+    babelExclude([path.resolve("src/data")]),
     fixBabelImports('import', {
       libraryName: 'antd-mobile',
       style: 'css',

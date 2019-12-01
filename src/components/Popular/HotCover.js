@@ -10,7 +10,7 @@ const HotCover = ({ updateTime }) => {
     <div className={styles.container}>
       <div className={styles.cover} style={url2bgStyle(url)}>
       </div>
-      <div className={styles.uptime}>更新日期：{formatDate('YYYY/mm/dd', updateTime)}</div>
+      <div className={styles.uptime}>最近更新：{formatDate('YYYY/mm/dd', updateTime)}</div>
     </div>
   )
 };
