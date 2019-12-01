@@ -1,8 +1,8 @@
 import React from 'react';
 import styles from './SearchHistoryItem.less'
 
-const historyIcon = require('../../assets/history.svg');
-const deleteIcon = require('../../assets/delete.svg');
+const historyIcon = require('../../assets/icons/history.svg');
+const deleteIcon = require('../../assets/icons/delete.svg');
 
 const SearchHistory = ({ content, onClick, onRemove }) => {
   const handleRemove = (ev) => {

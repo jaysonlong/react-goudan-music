@@ -1,6 +1,6 @@
 import request from '../utils/request';
 
-export const baseUrl = "http://172.29.19.57:4000";
+export const baseUrl = "http://127.0.0.1:4000";
 export const storageKey = "search-history";
 
 const testPlayList = false;
@@ -26,10 +26,10 @@ export async function queryAlbumInfo(albumId) {
 }
 
 // 获取推荐歌单
-export async function queryRecommendPlayLists() {
+export async function queryRecommendPlayLists(limit = 30) {
   if (testRecommend)
     return Promise.resolve(require('../data/queryRecommendPlayLists.json'));
-  return request(`${baseUrl}/personalized`)
+  return request(`${baseUrl}/personalized?limit=${limit}`)
     .then(({ code, result }) => {
       return result.map(each => {
         return {

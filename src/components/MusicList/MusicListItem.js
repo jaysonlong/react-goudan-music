@@ -23,7 +23,7 @@ const MusciListItem = ({ data, rank, highlight, onClick }) => {
       }
       <div className={styles.content}>
         <div className={styles.name}>{data.name}</div>
-        <div>
+        <div className={styles.desc}>
           <span className={styles.tag}>SQ</span>
           <span className={styles.singer}>{singerName}</span>
         </div>

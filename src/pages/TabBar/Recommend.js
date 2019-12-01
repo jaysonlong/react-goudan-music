@@ -5,7 +5,7 @@ import PictureGrid from '../../components/Recommend/PictureGrid'
 import CateTitle from '../../components/Recommend/CateTitle'
 import MusicList from '../../components/MusicList/MusicList'
 
-const Recommend = ({ history, newSongs, playlists, setList, fetchNewSongs, fetchPlayLists }) => {
+const Recommend = ({ history, newSongs, playlists, setList, fetchNewSongs, fetchPlayLists, renew }) => {
   const [init] = useState();
   useEffect(() => {
     fetchPlayLists();
@@ -20,7 +20,9 @@ const Recommend = ({ history, newSongs, playlists, setList, fetchNewSongs, fetch
 
   return (
     <div>
-      <CateTitle title="推荐歌单"></CateTitle>
+      <CateTitle title="推荐歌单">
+        <span onClick={renew}>换一批</span>
+      </CateTitle>
       <PictureGrid onClick={toList} data={playlists} />
       <CateTitle title="最新音乐"></CateTitle>
       <MusicList data={newSongs} />
@@ -29,9 +31,17 @@ const Recommend = ({ history, newSongs, playlists, setList, fetchNewSongs, fetch
 };
 
 const mapState = ({ recommend }) => {
+  const { playlists, playlistsOffset: offset, playlistsLimit: limit } = recommend;
+  let filterLists = playlists.slice(offset, offset + limit);
+
+  const predLength = offset + limit - playlists.length;
+  if (predLength > 0) {
+    filterLists = filterLists.concat(playlists.slice(0, predLength))
+  }
+
   return {
     newSongs: recommend.newSongs,
-    playlists: recommend.playlists.slice(0, 9)
+    playlists: filterLists,
   }
 }
 
@@ -47,12 +57,17 @@ const mapDispatch = (dispatch) => {
         type: 'recommend/fetchPlayLists'
       })
     },
+    renew() {
+      dispatch({
+        type: 'recommend/renewPlaylists',
+      })
+    },
     setList(data) {
       dispatch({
         type: 'playlist/saveData',
         payload: data,
       })
-    }
+    },
   }
 }
 

@@ -1,6 +1,7 @@
 import React from 'react';
 import { connect } from 'dva';
 import { withRouter } from 'react-router-dom';
+import ImageHolder from '../../components/ImageHolder';
 import styles from './Footer.less';
 
 const Footer = ({ inited, name, artists, albumPicUrl,
@@ -14,7 +15,7 @@ const Footer = ({ inited, name, artists, albumPicUrl,
 
   return (
     <div className={styles.container} onClick={expand}>
-      <img className={styles.album} src={albumPicUrl} alt="" />
+      <ImageHolder className={styles.album} src={albumPicUrl} />
       <div className={styles.info}>
         <div className={styles.song}>{name}</div>
         <div className={styles.singer}>{artist}</div>

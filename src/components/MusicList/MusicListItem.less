@@ -2,6 +2,12 @@
 @marg: 15px;
 @color: #d43c33;
 
+.elli {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
 .item {
   position: relative;
   height: 55px;
@@ -27,29 +33,37 @@
     display: flex;
     flex-direction: column;
     justify-content: space-around;
+    overflow: hidden;
 
     .name {
       font-size: 16px;
+      .elli();
     }
-    .tag {
-      border: @color solid .5px;
-      border-radius: 2px;
-      color: @color;
-      font-size: 7px;
-      font-weight: bold;
-      padding: 1px 2px;
-      margin-right: 4px;
-      position: relative;
-      top: -1.5px;
-    }
-    .singer {
-      font-size: 12px;
-      color: #555;
+
+    .desc {
+      .elli();
+
+      .tag {
+        border: @color solid .5px;
+        border-radius: 2px;
+        color: @color;
+        font-size: 7px;
+        font-weight: bold;
+        padding: 1px 2px;
+        margin-right: 4px;
+        position: relative;
+        top: -1.5px;
+      }
+      .singer {
+        font-size: 12px;
+        color: #555;
+      }
     }
   }
   
 
   .icon {
+    flex-shrink: 0;
     margin-right: @marg;
     width: 22px;
     height: 22px;

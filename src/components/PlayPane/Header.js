@@ -4,7 +4,7 @@ import { Icon } from 'antd-mobile';
 import styles from './Header.less'
 import { withRouter } from 'react-router-dom';
 
-const logo = require('../../assets/logo.png');
+const logo = require('../../assets/logo/logo.png');
 
 const Header = ({ history, collapse }) => {
   const onCollapse = () => {

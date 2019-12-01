@@ -1,10 +1,11 @@
 {
-  "name": "react-music",
+  "name": "react-goudan-music",
   "version": "0.1.0",
   "private": true,
   "dependencies": {
     "antd-mobile": "^2.3.1",
     "dva": "^2.6.0-beta.6",
+    "fastclick": "^1.0.6",
     "hash.js": "^1.1.7",
     "lodash": "^4.17.15",
     "rc-slider": "^8.7.1",

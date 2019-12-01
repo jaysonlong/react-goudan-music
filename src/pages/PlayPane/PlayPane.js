@@ -27,7 +27,7 @@ function PlayPane({ history, collapse, name, artists, expanded, albumPicUrl }) {
   }
 
   return (
-    <CSSTransition onEntered={onEntered} in={expanded} appear={true} timeout={500} classNames="panel" unmountOnExit>
+    <CSSTransition onEntered={onEntered} in={expanded} appear={true} timeout={400} classNames="panel" unmountOnExit>
       <div className={styles.container}>
         <BgHolder className={styles.filter} src={albumPicUrl} />
         <Header />

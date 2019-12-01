@@ -3,7 +3,7 @@ import { Button } from 'antd-mobile';
 import styles from './Header.less'
 
 const Header = () => {
-  const logo = require('../../assets/logo_reverse.png');
+  const logo = require('../../assets/logo/logo_reverse.png');
   return (
     <div className={styles.header}>
       <div className={styles.title}>

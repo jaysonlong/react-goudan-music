@@ -1,10 +1,12 @@
 import dva from 'dva';
+// import FastClick from 'fastclick';
 import './global.css';
 import './assets/iconfont/iconfont.css';
 import MyRouter from './router';
-import { getStorage } from './utils/utils'
-import { storageKey } from './services/api'
+import { getStorage } from './utils/utils';
+import { storageKey } from './services/api';
 
+// FastClick.attach(window.document.body);
 
 const app = dva({
   initialState: {
@@ -12,6 +14,8 @@ const app = dva({
     recommend: {
       playlists: [],
       newSongs: [],
+      playlistsOffset: 0,
+      playlistsLimit: 9,
     },
 
     // 热歌榜

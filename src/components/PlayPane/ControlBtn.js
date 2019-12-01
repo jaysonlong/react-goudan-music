@@ -4,10 +4,10 @@ import { url2bgStyle } from '../../utils/utils';
 import styles from './ControlBtn.less'
 
 const ControlBtn = ({ playing, togglePlaying }) => {
-  const prev = require('../../assets/play_prev.png');
-  const play = require('../../assets/play_play.png');
-  const pause = require('../../assets/play_pause.png');
-  const next = require('../../assets/play_next.png');
+  const prev = require('../../assets/icons/play_prev.png');
+  const play = require('../../assets/icons/play_play.png');
+  const pause = require('../../assets/icons/play_pause.png');
+  const next = require('../../assets/icons/play_next.png');
 
   const current = playing ? pause : play;
 

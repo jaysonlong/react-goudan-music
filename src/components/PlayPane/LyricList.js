@@ -4,8 +4,8 @@ import styles from './LyricList.less'
 const LyricList = ({ name, artists }) => {
   const lyrics = [
     { time: 1234, content: 'Hello, world' },
-    { time: 1234, content: '是他，是他，就是他！' },
-    { time: 1234, content: '我们的英雄，小哪吒！' },
+    { time: 1234, content: '是他，是他，就是他' },
+    { time: 1234, content: '我们的英雄，小哪吒' },
   ]
   const artist = artists.map(each => each.name).join('/')
   return (

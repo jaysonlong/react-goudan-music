@@ -30,12 +30,12 @@ body {
 }
 .panel-enter-active {
   transform: translateY(0);
-  transition: transform 500ms;
+  transition: transform 400ms;
 }
 .panel-exit {
   transform: translateY(0);
 }
 .panel-exit-active {
   transform: translateY(calc(100vh));
-  transition: transform 500ms;
+  transition: transform 400ms;
 }

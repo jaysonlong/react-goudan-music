@@ -1,68 +1,60 @@
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+# react-goudan-music
 
-## Available Scripts
+##### 狗蛋音乐 —— 使用 React 实现的仿网易云音乐播放器，在线演示地址：尚无
 
-In the project directory, you can run:
+> 项目纯属娱乐，用来熟悉一下React开发相关技术栈
+>
 
-### `npm start`
+| ![recommend](img/recommend.jpg) |  ![popular](img/popular.jpg)  |  ![search](img/search.jpg)   |
+| ------------------------------- | ---- | ---- |
+| ![result](img/result.jpg)  |  ![listpane](img/listpane.jpg)  |  ![playpane](img/playpane.jpg)  |
 
-Runs the app in the development mode.<br />
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
 
-The page will reload if you make edits.<br />
-You will also see any lint errors in the console.
 
-### `npm test`
+**项目概况**：
 
-Launches the test runner in the interactive watch mode.<br />
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+- 基础技术栈： `react` + `antd-mobile` + `react-router` + `redux` + `redux-saga`
 
-### `npm run build`
+- 基于 `create-react-app` 创建，使用 `dva` 管理
+- 半成品，能用，但目前只有基本的搜索/播放/歌单/排行榜功能
+- 自己摸索着一点点写的， 没有参考任何教程，代码/结构可能不太规范
 
-Builds the app for production to the `build` folder.<br />
-It correctly bundles React in production mode and optimizes the build for the best performance.
+**Todo：**
 
-The build is minified and the filenames include the hashes.<br />
-Your app is ready to be deployed!
+- 歌词显示
+- 无限下拉列表
+- 超长列表渲染优化
+- 图片懒加载
+- `antd-mobile` 换成 `antd` 或者其他UI
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
 
-### `npm run eject`
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+## 🔨 Usage
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+#### 前端部分
 
-Instead, it will copy all the configuration files and the transitive dependencies (Webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
+```bash
+git clone git@github.com:midmis/react-goudan-music.git
+npm install
+npm start
+```
 
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
 
-## Learn More
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+#### 后端部分
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+后端项目为 [@Binaryify](https://github.com/Binaryify/NeteaseCloudMusicApi) 提供的 [网易云音乐 API](https://github.com/Binaryify/NeteaseCloudMusicApi)，感谢。
 
-### Code Splitting
+```bash
+git clone git@github.com:Binaryify/NeteaseCloudMusicApi.git
+npm install
 
-This section has moved here: https://facebook.github.io/create-react-app/docs/code-splitting
+# Mac/Linux
+PORT=4000 node app.js
 
-### Analyzing the Bundle Size
+# Windows, use git-bash or cmder
+set PORT=4000 && node app.js
 
-This section has moved here: https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size
+```
 
-### Making a Progressive Web App
 
-This section has moved here: https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app
-
-### Advanced Configuration
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/advanced-configuration
-
-### Deployment
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/deployment
-
-### `npm run build` fails to minify
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify
