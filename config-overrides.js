@@ -1,5 +1,5 @@
-const path = require('path');
 const { override, fixBabelImports, addWebpackModuleRule, babelExclude } = require('customize-cra');
+const path = require('path');
 
 module.exports = {
   webpack: override(
@@ -22,7 +22,10 @@ module.exports = {
             modules: true
           }
         },
-        'less-loader']
+        // 自定义loader，通过媒体查询适配PC端
+        path.resolve('src/loader/pc-css-adapter.js'),
+        'less-loader',
+      ],
     }),
   )
 };

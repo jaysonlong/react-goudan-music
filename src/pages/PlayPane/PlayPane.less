@@ -1,6 +1,21 @@
 @zero: 0;
 @blur: 5px;
 
+:global(.panel-enter) {
+  transform: translateY(calc(100vh));
+}
+:global(.panel-enter-active) {
+  transform: translateY(0);
+  transition: transform 400ms;
+}
+:global(.panel-exit) {
+  transform: translateY(0);
+}
+:global(.panel-exit-active) {
+  transform: translateY(calc(100vh));
+  transition: transform 400ms;
+}
+
 .container {
   background-color: #222;
   position: fixed;

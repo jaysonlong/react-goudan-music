@@ -1,6 +1,6 @@
 import dva from 'dva';
 import FastClick from 'fastclick';
-import './global.css';
+import './global.less';
 import './assets/iconfont/iconfont.css';
 import MyRouter from './router';
 import { getStorage } from './utils/utils';
