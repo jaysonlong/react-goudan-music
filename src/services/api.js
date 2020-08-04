@@ -3,23 +3,18 @@ import request from '../utils/request';
 export const baseUrl = "http://127.0.0.1:4000";
 export const storageKey = "search-history";
 
-// 设置控制台是否输出服务器响应内容
-const logData = process.env.NODE_ENV === 'development' ? true : false;
-
 // 获取音乐url
 export async function querySongUrl(songIds) {
   return request(`${baseUrl}/song/url?id=${songIds}`, { expirys: 60 * 1000 })
     .then(({ data }) => data[0])
-    .catch(err => [])
-    .then(log('querySongUrl'))
+    .then(fallback('querySongUrl', []))
 }
 
 // 获取专辑内容
 export async function queryAlbumInfo(albumId) {
   return request(`${baseUrl}/album?id=${albumId}`)
     .then(({ songs }) => songs[0].al)
-    .catch(err => [])
-    .then(log('queryAlbumInfo'))
+    .then(fallback('queryAlbumInfo', []))
 }
 
 // 获取推荐歌单
@@ -34,12 +29,12 @@ export async function queryRecommendPlayLists(limit = 30) {
           picUrl: each.picUrl,
           playCount: each.playCount,
           trackCount: each.trackCount,
-          trackNumberUpdateTime: each.trackNumberUpdateTime
+          updateTime: each.updateTime,
+          trackUpdateTime: each.trackUpdateTime,
         }
       })
     })
-    .catch(err => [])
-    .then(log('queryRecommendPlayLists'))
+    .then(fallback('queryRecommendPlayLists', []))
 }
 
 // 获取推荐的新音乐
@@ -57,48 +52,34 @@ export async function queryRecommendNewSongs() {
         }
       })
     })
-    .catch(err => [])
-    .then(log('queryRecommendNewSongs'))
+    .then(fallback('queryRecommendNewSongs', []))
 }
 
-// 获取热歌榜
-export async function queryPopularSongs() {
-  return request(`${baseUrl}/top/list?idx=1`)
-    .then(({ code, playlist }) => {
-      const {
-        updateTime,
-        trackCount,
-        tracks,
-        trackIds,
-      } = playlist;
-
-      const songs = tracks.map(song => {
+// 获取所有排行榜
+export async function queryTopLists() {
+  return request(`${baseUrl}/toplist`)
+    .then(({ list }) => {
+      return list.map(each => {
         return {
-          id: song.id,
-          name: song.name,
-          artists: song.ar,
-          album: song.al,
-          duration: song.dt,
+          id: each.id,
+          name: each.name,
+          type: each.type,
+          picUrl: each.picUrl || each.coverImgUrl,
+          playCount: each.playCount,
+          trackCount: each.trackCount,
+          updateTime: each.updateTime,
+          trackUpdateTime: each.trackUpdateTime,
         }
-      });
-
-      return {
-        updateTime,
-        songs,
-        songIds: trackIds,
-        songCount: trackCount,
-      }
+      })
     })
-    .catch(err => [])
-    .then(log('queryPopularSongs'))
+    .then(fallback('queryTopLists', {}));
 }
 
 // 获取热搜
 export async function queryHotSearch() {
   return request(`${baseUrl}/search/hot`)
     .then(({ result }) => result.hots.map(each => each.first))
-    .catch(err => [])
-    .then(log('queryHotSearch'))
+    .then(fallback('queryHotSearch', []))
 }
 
 // 获取搜索建议
@@ -107,16 +88,14 @@ export async function querySearchSuggest(keyword) {
     .then(({ result }) => {
       return result.allMatch.map(each => each.keyword)
     })
-    .catch(err => [])
-    .then(log('querySearchSuggest'))
+    .then(fallback('querySearchSuggest', []))
 }
 
 // 获取搜索结果
 export async function querySearchResult(keyword, limit = 30, offset = 0) {
   return request(`${baseUrl}/search?keywords=${keyword}&limit=${limit}&offset=${offset}`)
     .then(({ result }) => result.songs)
-    .catch(err => [])
-    .then(log('querySearchResult'))
+    .then(fallback('querySearchResult', []))
 }
 
 // 获取歌单内容
@@ -155,14 +134,32 @@ export async function queryPlayList(listId) {
         coverImgUrl,
       }
     })
-    .catch(err => ({}))
-    .then(log('queryPlayList'))
+    .then(fallback('queryPlayList', {}))
 }
 
-function log(name) {
+// 获取歌曲信息
+export async function querySongDetail(idList) {
+  return await request(`${baseUrl}/song/detail?ids=${idList.join(',')}`)
+    .then(({ songs }) => {
+      return songs.map(song => {
+        return {
+          id: song.id,
+          name: song.name,
+          artists: song.ar,
+          album: song.al,
+          duration: song.dt,
+        }
+      });
+    })
+    .then(fallback('querySongDetail', []))
+}
+
+function fallback(name, retVal) {
   return function (data) {
-    if (logData)
-      console.log(name, data);
+    if (data instanceof Error) {
+      console.log('Error: ' + name, data);
+      return retVal;
+    }
     return data;
   }
 }

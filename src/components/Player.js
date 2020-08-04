@@ -36,7 +36,7 @@ const Player = ({ songUrl, setEl, playing, setCurrentTime }) => {
 
 const mapState = ({ player }) => {
   return {
-    songUrl: player.songUrl,
+    songUrl: player.songInfo.songUrl,
     playing: player.playing,
   }
 }
@@ -44,7 +44,7 @@ const mapState = ({ player }) => {
 const mapDispatch = (dispatch) => {
   return {
     setEl(el) {
-      window.el = el;
+      // window.el = el;
       dispatch({
         type: 'player/saveData',
         payload: {

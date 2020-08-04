@@ -15,7 +15,7 @@ export default {
       })
     },
     * fetchPlayLists(action, { call, put }) {
-      const playlists = yield call(queryRecommendPlayLists, 54);
+      const playlists = yield call(queryRecommendPlayLists, 72);
       yield put({
         type: "saveData",
         payload: { playlists }

@@ -66,8 +66,14 @@ const cachedGet = (expirys, hashcode) => {
   return null;
 }
 
+// 是否禁用cache
+window.disableCache = false;
+
 // 开发坏境延长缓存时间10分钟，方便测试
 const defaultExpirys = process.env.NODE_ENV === 'development' ? 60 * 5 : 60;
+
+// 设置控制台是否输出服务器响应内容
+const logData = process.env.NODE_ENV === 'development' ? true : false;
 
 /**
  * 请求工具类，设置缓存，失败时显示报错信息
@@ -88,7 +94,7 @@ export default function request(url, options) {
     .digest('hex');
 
   const expirys = options.expirys && defaultExpirys;
-  if (expirys !== false) {
+  if (window.disableCache !== true && expirys !== false) {
     const jsonResp = cachedGet(expirys, hashcode)
     if (jsonResp !== null) {
       return jsonResp;
@@ -99,5 +105,11 @@ export default function request(url, options) {
     .then(checkStatus)
     .then(response => cachedSave(response, hashcode))
     .then(response => response.json())
-    .catch(err => (console.log(err) || err));
+    .then(data => {
+      if (logData) {
+        console.log(url, data);
+      }
+      return data;
+    })
+    .catch(err => err)
 }

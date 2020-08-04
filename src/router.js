@@ -1,15 +1,15 @@
 import React from 'react';
 import { HashRouter, Route, Switch } from 'react-router-dom';
-import Home from './pages/Home'
+import BasicLayout from './pages/BasicLayout'
 
-function BasicLayout() {
+function BasicRoute() {
   return (
     <HashRouter>
       <Switch>
-        <Route path="/" component={Home}></Route>
+        <Route path="/" component={BasicLayout}></Route>
       </Switch>
     </HashRouter>
   )
 }
 
-export default BasicLayout;
+export default BasicRoute;

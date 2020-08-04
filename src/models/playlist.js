@@ -1,4 +1,4 @@
-import { queryPlayList } from '../services/api';
+import { queryPlayList, querySongDetail } from '../services/api';
 
 export default {
 
@@ -17,33 +17,26 @@ export default {
         }
       })
 
-      const playlist = yield call(queryPlayList, id);
-      const {
-        name,
-        creator,
-        playCount,
-        shareCount,
-        songCount,
-        songs,
-        songIds,
-        coverImgUrl,
-      } = playlist;
-
+      const playlistInfo = yield call(queryPlayList, id);
       yield put({
         type: "saveData",
         payload: {
-          id,
-          name,
-          creator,
-          playCount,
-          shareCount,
-          songCount,
-          songs,
-          songIds,
-          coverImgUrl,
+          ...playlistInfo,
           loading: false,
         }
-      })
+      });
+
+      const { songIds, songs } = playlistInfo;
+      if (songIds.length === songs.length) {
+        return;
+      }
+
+      const resetSongIds = songIds.slice(songs.length).map(each => each.id);
+      const restSongs = yield call(querySongDetail, resetSongIds);
+      yield put({
+        type: "appendSongs",
+        payload: restSongs,
+      });
     }
   },
 
@@ -73,6 +66,13 @@ export default {
         songIds,
         coverImgUrl,
         loading,
+      })
+    },
+
+    appendSongs(state, { payload: data }) {
+      const songs = state.songs.concat(data);
+      return Object.assign({}, state, {
+        songs,
       })
     },
   },

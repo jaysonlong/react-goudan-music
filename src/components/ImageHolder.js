@@ -4,6 +4,7 @@ const defaultHolder = "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAASEAAAEhCAM
 
 const ImageHolder = ({ src, holder, className }) => {
   holder = holder || defaultHolder;
+  src = src || holder;
 
   const [done, setDone] = useState(false);
   useEffect(() => {

@@ -2,7 +2,7 @@ import dva from 'dva';
 import FastClick from 'fastclick';
 import './global.less';
 import './assets/iconfont/iconfont.css';
-import MyRouter from './router';
+import BasicRoute from './router';
 import { getStorage } from './utils/utils';
 import { storageKey } from './services/api';
 
@@ -18,12 +18,9 @@ const app = dva({
       playlistsLimit: 9,
     },
 
-    // 热歌榜
-    popular: {
-      updateTime: 0,
-      songs: [],
-      songIds: [],
-      songCount: 0,
+    // 排行榜
+    toplist: {
+      toplists: [],
     },
 
     // 搜索页面
@@ -38,14 +35,17 @@ const app = dva({
 
     // 播放页面
     player: {
-      id: null,
-      name: '',
-      artists: [],
+      songInfo: {
+        id: null,
+        name: '',
+        artists: [],
+        duration: 0,
+        songUrl: '',
+      },
       album: {
         picUrl: '',
       },
-      duration: 0,
-      songUrl: '',
+      songList: [],
 
       el: null,
       playing: false,
@@ -55,11 +55,14 @@ const app = dva({
     },
 
     // 顶部标签栏
-    tabs: [
-      { key: '/recommend', title: '推荐音乐' },
-      { key: '/popular', title: '热歌榜' },
-      { key: '/search', title: '搜索' },
-    ],
+    tabbar: {
+      tabs: [
+        { key: '/recommend', title: '推荐音乐' },
+        { key: '/toplist', title: '排行榜' },
+        { key: '/search', title: '搜索' },
+      ],
+      tabIndex: 0,
+    },
 
     // 歌单详情页
     playlist: {
@@ -76,12 +79,12 @@ const app = dva({
     }
   }
 });
-app.router(MyRouter);
+app.router(BasicRoute);
+app.model(require('./models/tabbar').default);
 app.model(require('./models/recommend').default);
-app.model(require('./models/popular').default);
+app.model(require('./models/toplist').default);
 app.model(require('./models/search').default);
 app.model(require('./models/player').default);
-app.model(require('./models/tabs').default);
 app.model(require('./models/playlist').default);
 app.start('#root');
 

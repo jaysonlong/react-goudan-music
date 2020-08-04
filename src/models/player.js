@@ -8,19 +8,20 @@ export default {
   state: {},
 
   effects: {
-    * playSong({ payload: song }, { call, put }) {
-      const { id, name, artists, album, duration } = song;
+    * playSong({ payload }, { call, put }) {
+      const { songInfo, songList } = payload;
 
       yield put({
         type: "saveData",
         payload: {
+          songList: songList,
           playing: false,
           loading: true,
         }
       });
 
-      const songInfo = yield call(querySongUrl, id);
-      if (!songInfo.url) {
+      const result = yield call(querySongUrl, songInfo.id);
+      if (!result.url) {
         Toast.offline("亲爱的, 暂无版权", 1);
         return;
       }
@@ -28,24 +29,26 @@ export default {
       yield put({
         type: "saveData",
         payload: {
-          id,
-          duration,
-          name,
-          artists,
-          songUrl: songInfo.url,
+          songInfo: {
+            id: songInfo.id,
+            duration: songInfo.duration,
+            name: songInfo.name,
+            artists: songInfo.artists,
+            songUrl: result.url,
+          },
           playing: true,
-          expanded: true,
           loading: false,
+          expanded: true,
         }
       });
 
-      let { id: albumId, picUrl } = album;
+      let { id: albumId, picUrl } = songInfo.album;
 
       if (!picUrl) {
         const albumInfo = yield call(queryAlbumInfo, albumId);
         picUrl = albumInfo.picUrl;
       }
-
+      
       yield put({
         type: "saveData",
         payload: {
@@ -60,7 +63,7 @@ export default {
 
   reducers: {
     togglePlaying(state) {
-      if (state.playing === false && !state.songUrl) {
+      if (state.playing === false && !state.songInfo.songUrl) {
         return state;
       }
 
@@ -72,7 +75,7 @@ export default {
       if (percent < 0 || percent > 100) {
         return state;
       }
-      const currentTime = Math.round(state.duration * percent / 100);
+      const currentTime = Math.round(state.songInfo.duration * percent / 100);
       state.el.currentTime = currentTime / 1000;
       return Object.assign({}, state, {
         currentTime: currentTime,
@@ -80,13 +83,9 @@ export default {
     },
     saveData(state, { payload: data }) {
       const {
-        id = state.id,
-        name = state.name,
-        artists = state.artists,
+        songInfo = state.songInfo,
         album = state.album,
-        duration = state.duration,
-        songUrl = state.songUrl,
-
+        songList = state.songList,
         el = state.el,
         playing = state.playing,
         loading = state.loading,
@@ -94,18 +93,14 @@ export default {
         currentTime = state.currentTime,
       } = data;
 
-      if (playing === true && !songUrl) {
+      if (playing === true && !songInfo.songUrl) {
         return state;
       }
 
       return Object.assign({}, state, {
-        id,
-        name,
-        artists,
+        songInfo,
         album,
-        duration,
-        songUrl,
-
+        songList,
         el,
         playing,
         loading,

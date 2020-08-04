@@ -14,10 +14,26 @@
   position: fixed;
   height: 100%;
   width: 100%;
-  overflow-y: auto;
   background-color: white;
 }
 
 :global(.am-search .am-search-cancel) {
   color: #222;
+}
+
+:global(.scrollbar-vertical-track) {
+  background-color: transparent;
+  width: 10px;
+  transition: opacity 0.3s;
+}
+
+:global(.scrollbar-vertical-handler) {
+  width: 8px;
+  right: 1px;
+  border-radius: 4px;
+  background-color: rgba(0, 0, 0, 0.5);
+  transition: opacity 0.3s;
+  &:hover {
+      background-color: rgba(0, 0, 0, 0.8);
+  }
 }
