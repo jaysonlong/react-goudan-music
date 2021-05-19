@@ -21,7 +21,7 @@ const Recommend = ({ history, newSongs, playlists, setList, fetchNewSongs, fetch
   return (
     <div>
       <CateTitle title="推荐歌单">
-        <span onClick={renew}>换一批</span>
+        <span onClick={renew} style={{cursor: "pointer"}}>换一批</span>
       </CateTitle>
       <PictureGrid onClick={toList} data={playlists} />
       <CateTitle title="最新音乐"></CateTitle>

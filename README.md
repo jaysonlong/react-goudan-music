@@ -2,7 +2,7 @@
 
 ##### 狗蛋音乐 —— 使用 React 实现的仿网易云音乐播放器
 
-##### 在线演示：[Demo地址](http://jaysonl.top/goudan-music)
+##### 在线演示：[Demo地址](http://jaysonl.top/goudan/)
 
 > 项目纯属娱乐，用来熟悉一下React开发相关技术栈
 >

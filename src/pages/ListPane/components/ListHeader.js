@@ -37,8 +37,10 @@ const ListHeader = ({ name, playCount, creator, coverImgUrl, onClick }) => {
   return (
     <div className={styles.header}>
       <div className={styles.topbar} ref={(el) => setTopBar(el)}>
-        <Icon onClick={onClick} className={styles.left} type={'left'} />
-        <span onClick={onClick}>歌单详情</span>
+        <div className={styles.goBack}>
+          <Icon onClick={onClick} className={styles.left} type={'left'} />
+          <span onClick={onClick}>歌单详情</span>
+        </div>
       </div>
       <BgHolder className={styles.bg} src={coverImgUrl} color={"#aaa"}>
         <div className={styles.content}>
