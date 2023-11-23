@@ -2,7 +2,7 @@ version: '3'
 
 services:
   frontend:
-    build: .
+    image: jaysonlong/react-goudan-music
     ports:
       - '${EXPOSE_PORT}:80'
 

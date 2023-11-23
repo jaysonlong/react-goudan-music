@@ -37,26 +37,29 @@
 
 ```bash
 git clone https://github.com/midmis/react-goudan-music.git
-git clone https://github.com/Binaryify/NeteaseCloudMusicApi.git
+cd react-goudan-music
 ```
 
-使用docker compose部署：
+构建docker镜像：
 
 ```bash
-git clone https://github.com/midmis/react-goudan-music.git
-cd react-goudan-music
+docker build -t jaysonlong/react-goudan-music .
+```
 
+使用docker compose启动/停止：
+
+```bash
 # 启动容器，监听80端口
 docker-compose up -d
 
 # 监听指定端口
 EXPORT_PORT=8080 docker-compose up -d
 
-# 停止
+# 停止容器
 docker-compose stop
 ```
 
-
+浏览器访问：http://localhost
 
 ### 本地测试
 
@@ -80,6 +83,6 @@ npm install
 node app.js
 ```
 
-#### 浏览器访问
+#### 访问页面
 
 浏览器访问：http://localhost:4000
