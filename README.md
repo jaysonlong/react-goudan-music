@@ -31,32 +31,55 @@
 
 ## 🔨 Usage
 
-#### 前端部分
+### 服务器部署
+
+获取项目：
 
 ```bash
 git clone https://github.com/midmis/react-goudan-music.git
+git clone https://github.com/Binaryify/NeteaseCloudMusicApi.git
+```
 
-npm install
-npm start
+使用docker compose部署：
+
+```bash
+git clone https://github.com/midmis/react-goudan-music.git
+cd react-goudan-music
+
+# 启动容器，监听80端口
+docker-compose up -d
+
+# 监听指定端口
+EXPORT_PORT=8080 docker-compose up -d
+
+# 停止
+docker-compose stop
 ```
 
 
 
-#### 后端部分
+### 本地测试
+
+#### 前端服务
+
+```bash
+git clone https://github.com/midmis/react-goudan-music.git
+cd react-goudan-music
+npm install
+npm start
+```
+
+#### 后端服务
 
 后端项目为 [@Binaryify](https://github.com/Binaryify/NeteaseCloudMusicApi) 提供的 [网易云音乐 API](https://github.com/Binaryify/NeteaseCloudMusicApi)，感谢。
 
 ```bash
 git clone https://github.com/Binaryify/NeteaseCloudMusicApi.git
-
+cd reNeteaseCloudMusicApi
 npm install
-
-# Mac/Linux
-PORT=4000 node app.js
-
-# Windows, use git-bash or cmder
-set PORT=4000 && node app.js
-
+node app.js
 ```
 
+#### 浏览器访问
 
+浏览器访问：http://localhost:4000

@@ -1,6 +1,6 @@
 import request from '../utils/request';
 
-export const baseUrl = "http://127.0.0.1:4000";
+export const baseUrl = process.env.REACT_APP_BACKEND_URL;
 export const storageKey = "search-history";
 
 // 获取音乐url
