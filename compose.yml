@@ -1,0 +1,20 @@
+services:
+  frontend:
+    image: jaysonlong/react-goudan-music
+    hostname: goudan-music
+    profiles: ["normal"]
+    ports:
+      - '${PORT}:80'
+
+  frontend-unexpose:
+    image: jaysonlong/react-goudan-music
+    hostname: goudan-music
+    profiles: ["unexpose"]
+
+  backend:
+    image: binaryify/netease_cloud_music_api
+
+networks:
+  default:
+    name: goudan-music
+    external: true

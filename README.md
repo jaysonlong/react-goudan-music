@@ -2,7 +2,7 @@
 
 ##### 狗蛋音乐 —— 使用 React 实现的仿网易云音乐播放器
 
-##### 在线演示：[Demo地址](http://jaysonl.top/goudan/)
+##### 在线演示：[Demo地址](http://jaysonl.top/goudan-music/)
 
 > 项目纯属娱乐，用来熟悉一下React开发相关技术栈
 >
@@ -31,43 +31,43 @@
 
 ## 🔨 Usage
 
-### 服务器部署
+### 服务器部署(docker)
 
-获取项目：
+#### 准备项目
 
 ```bash
 git clone https://github.com/midmis/react-goudan-music.git
 cd react-goudan-music
+
+sudo docker build -t jaysonlong/react-goudan-music .
+sudo docker network create goudan-music
 ```
 
-构建docker镜像：
-
-```bash
-docker build -t jaysonlong/react-goudan-music .
-```
-
-使用docker compose启动/停止：
+#### 使用 docker compose (V2) 启动/停止
 
 ```bash
 # 启动容器，监听80端口
-docker-compose up -d
+sudo docker compose up -d
 
-# 监听指定端口
-EXPORT_PORT=8080 docker-compose up -d
+# 或指定监听端口
+sudo PORT=8080 docker compose up -d
 
 # 停止容器
-docker-compose stop
+sudo docker compose stop
 ```
 
-浏览器访问：http://localhost
+#### 访问页面
 
-### 本地测试
+浏览器访问 http://localhost
+
+### 本地测试(nodejs)
 
 #### 前端服务
 
 ```bash
 git clone https://github.com/midmis/react-goudan-music.git
 cd react-goudan-music
+
 npm install
 npm start
 ```
@@ -79,10 +79,11 @@ npm start
 ```bash
 git clone https://github.com/Binaryify/NeteaseCloudMusicApi.git
 cd reNeteaseCloudMusicApi
+
 npm install
 node app.js
 ```
 
 #### 访问页面
 
-浏览器访问：http://localhost:4000
+浏览器访问 http://localhost
