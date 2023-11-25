@@ -36,7 +36,7 @@
 #### 准备项目
 
 ```bash
-git clone https://github.com/midmis/react-goudan-music.git
+git clone https://github.com/jaysonlong/react-goudan-music.git
 cd react-goudan-music
 
 sudo docker build -t jaysonlong/react-goudan-music .
@@ -60,12 +60,12 @@ sudo docker compose stop
 
 浏览器访问 http://localhost
 
-### 本地测试(nodejs)
+### 本地测试(nodejs V16)
 
 #### 前端服务
 
 ```bash
-git clone https://github.com/midmis/react-goudan-music.git
+git clone https://github.com/jaysonlong/react-goudan-music.git
 cd react-goudan-music
 
 npm install
